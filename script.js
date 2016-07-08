@@ -18,13 +18,15 @@ app.controller('MainCtrl', function($scope, $http) {
 	    method: "JSONP",
 	    url: mediaUrl,
 	    params: {
-	    	callback: "JSON_CALLBACK"
+	    	callback: "JSON_CALLBACK",
         // you need to add your access token here, as per the documentation
+	    	access_token: token
 	    }
 	  }).then(function(response) {
+	  	console.log(response);
       $scope.picArray = response.data.data;
       // now analyze the sentiments and do some other analysis
-      // on your images 
+      // on your images
 	  })
 	};
 

@@ -11,7 +11,7 @@
 	<div class="container" ng-controller="MainCtrl">
 		<div class="row">
 			<div class="login-btn btn" ng-hide="hasToken" ng-click="getInstaPics()">
-				  <a href="https://api.instagram.com/oauth/authorize/?client_id=8ae6b7dda3b340b588c0734820a6ed11&redirect_uri=http://localhost:8001&response_type=token" class="btn btn-info btn-lg btn-block">
+				  <a href="https://api.instagram.com/oauth/authorize/?client_id=825f5d9e55cc42489a098e5170d694d6&redirect_uri=http://localhost:8000&response_type=token" class="btn btn-info btn-lg btn-block">
           <i class="fa fa-instagram"></i>
             Log in with Instagram
           </a>
@@ -23,7 +23,7 @@
 				<ul>
           <!-- this loops through all your pictures -->
 					<li ng-repeat="pic in picArray track by $index">
-            {{ pic }} <!-- what should be here instead? -->
+            			<img ng-src="{{pic.images.thumbnail.url}}" /> <!-- what should be here instead? -->
 					</li>
 				</ul>
 			</div>
