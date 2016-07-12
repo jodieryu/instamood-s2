@@ -2,28 +2,44 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<!--Bootstrap-->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
-  <script src="./script.js"></script>
+	<!--My stylesheet-->
+	<link type="text/css" rel="stylesheet" href="stylesheet.css"/>
+	<!--Angular-->
+  	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+  	<script src="./script.js"></script>
 	<title>Instamood</title>
 </head>
+
 <body ng-app="Instamood">
 	<div class="container" ng-controller="MainCtrl">
 		<div class="row">
-			<div class="login-btn btn" ng-hide="hasToken" ng-click="getInstaPics()">
+			<div class="login-btn btn" ng-hide="hasToken">
 				  <a href="https://api.instagram.com/oauth/authorize/?client_id=825f5d9e55cc42489a098e5170d694d6&redirect_uri=http://localhost:8000&response_type=token" class="btn btn-info btn-lg btn-block">
           <i class="fa fa-instagram"></i>
             Log in with Instagram
           </a>
 			</div>
 			<div ng-show="hasToken">
-        <!-- challenge: make it so that you don't have to click this link for
-             the pictures the load -->
-				<a ng-click="getInstaPics()">Load pictures!</a>
+        <!-- challenge: make it so that you don't have to click this link for the pictures the load -->
+        		<div class="User-Stats">
+        		<ul>
+        			<li>Ego Score (%): {{egoCounter}}</li>
+        			<li>Popularity: {{popularity}}</li>
+        			<li>Active days:{{maxDay}}</li>
+        			<li>Brevity: {{brevity}}</li>
+        			<li>Visibility Thirst: {{visibilityThirst}}</li>
+        		</ul>
+        			
+        		</div>
+
 				<ul>
           <!-- this loops through all your pictures -->
 					<li ng-repeat="pic in picArray track by $index">
-            			<img ng-src="{{pic.images.thumbnail.url}}" /> <!-- what should be here instead? -->
+            			<img ng-src="{{pic.images.standard_resolution.url}}"> 
+            			<p>{{pic.caption.text}}</p>
+            			<p>Positivity score: {{pic.score}}</p>
 					</li>
 				</ul>
 			</div>
